@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add snippet</title>
+    <link rel="stylesheet" href="/style.css">
+
+</head>
+
+<body>
+    <%- include('Header') %>
+
+        <div class="snippet-cont">
+            <%- include('msg', { title: 'addsnippet' , success_msg: success_msg, error_msg: error_msg }) %>
+
+                <h2 class="snippet-tit">Create a New Snippet</h2>
+
+                <form action="/addSnippet" method="post">
+                    <div class="snippet-form">
+                        <label class="snippet-data" for="title">Snippet Title:</label>
+                        <input class="snippet-data" type="text" name="title" id="title" required>
+                    </div>
+                    <div class="snippet-form">
+                        <label class="snippet-data" for="content">Snippet Content:</label>
+                        <textarea class="snippet-text" name="content" id="content" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Add Snippet</button>
+
+                </form>
+        </div>
+
+        <div class="snippet-list-container">
+            <h2 class="snippet-tit">Your Previous Snippets</h2>
+            <% if (snippets.length> 0) { %>
+                <ul>
+                    <% snippets.forEach(snippet=> { %>
+                        <li class="snippet-item">
+                            <h3>
+                                <%= snippet.title %>
+                            </h3>
+                            <p>
+                                <%= snippet.content %>
+                            </p>
+                        </li>
+                        <% }) %>
+                </ul>
+                <% } else { %>
+                    <p class="no-snippets">You haven't added any snippets yet.</p>
+                    <% } %>
+        </div>
+</body>
+
+
+</html>

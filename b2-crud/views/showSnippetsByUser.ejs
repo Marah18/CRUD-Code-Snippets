@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Snippets by User</title>
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.27.0/themes/prism.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.27.0/prism.min.js"></script>
+</head>
+
+<body>
+    <%- include('Header') %>
+        <div class="snippet-list-container">
+            <h2 class="snippet-tit">Select a User to Show Snippets</h2>
+
+            <form action="/showSnippetsByUser" method="get">
+                <select name="username" class="selectDropdown" onchange="this.form.submit()">
+                    <option value="" class="optionSelector">Select User</option>
+                    <% users.forEach(user=> { %>
+                        <option value="<%= user.name %>" class="optionSelector" <% if (user.name===selectedUser) { %>
+                            selected <% } %>><%= user.name %>
+                        </option>
+
+                        <% }) %>
+                </select>
+            </form>
+
+            <h2 class="snippet-tit">All Previous Snippets</h2>
+
+            <% if (snippets.length> 0) { %>
+                <ul>
+                    <% snippets.forEach(snippet=> { %>
+                        <li class="snippet-item">
+
+                            <h3>
+                                <%= snippet.title %>
+                            </h3>
+                            <p>
+                            <pre
+                                class="snippet-content"><code class="language-<%='javascript' %>"><%= snippet.content %></code></pre>
+                            </p>
+                        </li>
+                        <% }) %>
+                </ul>
+                <% } else { %>
+                    <p class="no-snippets">No snippets added yet.</p>
+                    <% } %>
+        </div>
+</body>
+
+</html>

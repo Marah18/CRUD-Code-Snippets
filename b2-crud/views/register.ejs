@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <title>Register</title>
+</head>
+
+<body>
+
+    <%- include('Header') %>
+
+        <div class="main-home-content">
+            <div class="form-container">
+                <h2>Register</h2>
+                <form action="/register" method="post">
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="username" placeholder="Enter a username" required
+                            autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">password:</label>
+                        <input type="password" id="password" name="password" placeholder="Enter password" required>
+                    </div>
+                    <%- include('msg', { title: 'Register' , success_msg: success_msg, error_msg: error_msg }) %>
+
+                        <button type="submit" class="submit-btn">Register</button>
+                </form>
+            </div>
+        </div>
+</body>
+
+</html>

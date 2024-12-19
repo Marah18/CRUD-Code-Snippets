@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Snippets</title>
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.27.0/themes/prism.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.27.0/prism.min.js"></script>
+</head>
+
+<body>
+    <%- include('Header') %>
+        <div class="snippet-list-container">
+            <h2 class="snippet-tit">All Previous Snippets</h2>
+            <% if (snippets.length> 0) { %>
+                <ul>
+                    <% snippets.forEach(snippet=> { %>
+                        <li class="snippet-item">
+                            <p>
+                            <div class="center">Username:</strong>
+                                <%= snippet.username %>
+                            </div>
+                            <h3>
+                                <%= snippet.title %>
+                            </h3>
+                            <p>
+                            <pre
+                            class="snippet-content"><code class="language-<%='javascript' %>"><%= snippet.content %></code></pre>
+                        </p>
+                        </li>
+                        <% }) %>
+                </ul>
+                <% } else { %>
+                    <p class="no-snippets">No snippets added yet.</p>
+                    <% } %>
+        </div>
+</body>
+
+</html>
